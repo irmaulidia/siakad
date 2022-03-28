@@ -3,12 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +16,3 @@ use App\Http\Controllers\ContactController;
 */
 
 Route::resource('/mahasiswa', MahasiswaController::class);
-Route::get('barang', [BarangController::class, 'index']);
-Route::get('/', [HomeController::class, 'index']);
-Route::get('supplier', [SupplierController::class, 'index']);
-Route::get('pelanggan', [PelangganController::class, 'index']);
-Route::get('pegawai', [PegawaiController::class, 'index']);
-Route::get('contact', [ContactController::class, 'index']);
-
