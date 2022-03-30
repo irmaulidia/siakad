@@ -28,16 +28,28 @@
                 </div>
                 <div class="form-group">
                     <label for="Nama">Nama</label> 
-                    <input type="Nama" name="nama" class="form-control" id="Nama" ariadescribedby="Nama" > 
+                    <input type="Nama" name="nama" class="form-control" id="Nama" aria-describedby="Nama" > 
                 </div>
                 <div class="form-group">
                     <label for="Kelas">Kelas</label> 
-                    <input type="Kelas" name="kelas" class="form-control" id="Kelas" ariadescribedby="password" > 
+                    <input type="Kelas" name="kelas" class="form-control" id="Kelas" aria-describedby="password" > 
                 </div>
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label> 
-                    <input type="Jurusan" name="jurusan" class="form-control" id="Jurusan" ariadescribedby="Jurusan" > 
+                    <input type="Jurusan" name="jurusan" class="form-control" id="Jurusan" aria-describedby="Jurusan" > 
                 </div>
+                <div class="form-group">
+                        <label for="Jurusan">Email</label>
+                        <input type="Jurusan" name="email" class="form-control" id="Jurusan" ariadescribedby="Jurusan">
+                    </div>
+                    <div class="form-group">
+                        <label for="Jurusan">Alamat</label>
+                        <input type="Jurusan" name="alamat" class="form-control" id="Jurusan" ariadescribedby="Jurusan">
+                    </div>
+                    <div class="form-group">
+                        <label for="Jurusan">Tanggal lahir</label>
+                        <input type="date" name="tgl_lahir" class="form-control" id="Jurusan" ariadescribedby="Jurusan">
+                    </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
