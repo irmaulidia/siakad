@@ -60,7 +60,7 @@ class MahasiswaController extends Controller
     public function show($nim)
     {
         //menampilkan detail data dengan menemukan/berdasarkan Nim Mahasiswa
-        //Code sebbelum dibuat relasi-->$mahasiswas = Mahasiswa::find($id);
+        //Code sebbelum dibuat relasi-->$mahasiswa = Mahasiswa::find($id);
         $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
         return view('mahasiswa.detail', ['mahasiswa' => $mahasiswa]);;
     }
@@ -111,7 +111,11 @@ class MahasiswaController extends Controller
     }
     public function search(Request $request){
         $keyword = $request -> search;
-        $mahasiswa = Mahasiswa::where('nama','like',"%". $keyword . "%") -> paginate(3);
-        return view(view: 'mahasiswa.index', data: compact( var_name:'mahasiswa'));
+        $paginate = Mahasiswa::where('nama','like',"%". $keyword . "%") -> paginate(3);
+        return view(view: 'mahasiswa.index', data: compact( var_name:'paginate'));
+    }
+    public function nilai($nim){
+        $nilai = Mahasiswa::with('kelas', 'matakuliah')->find($nim);
+        return view('mahasiswa.nilai', compact('nilai'));
     }
 };
