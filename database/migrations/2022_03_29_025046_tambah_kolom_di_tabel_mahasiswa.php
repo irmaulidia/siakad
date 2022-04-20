@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Tugas extends Migration
+class TambahKolomDiTabelMahasiswa extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class Tugas extends Migration
     public function up()
     {
         Schema::table('mahasiswa', function (Blueprint $table) {
-            $table->string('email', 100)->nullable();
-            $table->string('alamat', 100)->nullable();
-            $table->date('tgl_lahir')->nullable();
+            $table->String('Email', 255)->after('Nama')->nullable()->unique(); 
+            $table->String('TanggalLahir', 50)->after('No_Handphone')->nullable(); 
         });
     }
 
@@ -27,6 +26,8 @@ class Tugas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mahasiswa');
+        Schema::table('mahasiswa', function (Blueprint $table) {
+            $table->dropColumn('Email', 'TanggalLahir');;   
+        });
     }
 }

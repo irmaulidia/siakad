@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Mahasiswa_MataKuliah;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,17 +9,10 @@ class MataKuliah extends Model
 {
     use HasFactory;
     protected $table = 'matakuliah';
-
-    protected $fillable = [
-        'nama_matkul',
-        'sks',
-        'jam',
-        'semester',
-    ];
+    protected $guarded = ['id'];
 
     public function mahasiswa()
     {
-        return $this->belongsToMany(Mahasiswa::class, 'mahasiswa_matakuliah', 
-        'matakuliah_id', 'mahasiswa_nim')->withPivot('nilai');
+        return $this->belongsToMany(Mahasiswa::class, 'mahasiswa_matakuliah', 'matakuliah_id', 'mahasiswa_id')->withPivot('nilai');
     }
 }

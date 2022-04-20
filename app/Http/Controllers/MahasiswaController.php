@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
+use PDF;
 
 
 class MahasiswaController extends Controller
@@ -30,12 +31,17 @@ class MahasiswaController extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
+            'foto' => 'required|file|image|mimes:jpeg,png,jpg',
             'kelas' => 'required',
             'jurusan' => 'required',
             'email' => 'required',
             'alamat' => 'required',
             'tgl_lahir' => 'required',
             ]);
+
+            if ($request->file('foto')) {
+                $validateData['foto'] = $request->file('foto')->store('images', 'public');
+            }
 
         $mahasiswa = new Mahasiswa;
         $mahasiswa->nim = $request->get('nim');
@@ -79,6 +85,7 @@ class MahasiswaController extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
+            'foto' => 'required|file|image|mimes:jpeg,png,jpg',
             'kelas' => 'required',
             'jurusan' => 'required',
             'email' => 'required',
@@ -86,6 +93,12 @@ class MahasiswaController extends Controller
             'tgl_lahir' => 'required',
             ]);
     
+            if ($mahasiswa->foto && file_exists(storage_path('app/public/' . $mahasiswa->foto))) {
+                Storage::delete('public/' . $mahasiswa->foto);
+            }
+            $foto = $request->file('foto')->store('images', 'public');
+            $validateData['foto'] = $foto;
+            
             $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
             $mahasiswa->nim = $request->get('nim');
             $mahasiswa->nama = $request->get('nama');
@@ -117,5 +130,10 @@ class MahasiswaController extends Controller
     public function nilai($nim){
         $nilai = Mahasiswa::with('kelas', 'matakuliah')->find($nim);
         return view('mahasiswa.nilai', compact('nilai'));
+    }
+    public function cetak_pdf($Nim){
+        $mahasiswa = Mahasiswa::where('nim', $Nim)->first();
+        $pdf = PDF::loadview('mahasiswa.cetak_pdf',['mahasiswa'=>$mahasiswa]);
+        return $pdf->stream();
     }
 };

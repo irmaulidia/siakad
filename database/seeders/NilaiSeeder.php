@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class khsSeeder extends Seeder
+class NilaiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,22 +16,22 @@ class khsSeeder extends Seeder
     {
         $nilai = [
             [
-                'mahasiswa_id' => 2041720035,
+                'mahasiswa_id' => '2041720138',
                 'matakuliah_id' => 1,
                 'nilai' => 'A',
             ],
             [
-                'mahasiswa_id' => 20471200035,
+                'mahasiswa_id' => '2041720138',
                 'matakuliah_id' => 2,
                 'nilai' => 'A',
             ],
             [
-                'mahasiswa_id' => 2041720035,
+                'mahasiswa_id' => '2041720138',
                 'matakuliah_id' => 3,
-                'nilai' => 'B',
+                'nilai' => 'A',
             ],
             [
-                'mahasiswa_id' => 20417200035,
+                'mahasiswa_id' => '2041720138',
                 'matakuliah_id' => 4,
                 'nilai' => 'A',
             ],

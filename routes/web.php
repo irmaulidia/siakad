@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\TampilController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 
 /*
@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('/mahasiswa', MahasiswaController::class);
-Route::get('search', [MahasiswaController::class,'search'])->name('search');
-Route::get('mahasiswa/nilai/{nim}', [MahasiswaController::class, 'nilai'])->name('mahasiswa.nilai');
+Route::resource('mahasiswa', MahasiswaController::class);
+Route::get('/search', [MahasiswaController::class, 'search'])->name('search');
+Route::get('/mahasiswa/nilai/{mahasiswa}', [MahasiswaController::class, 'mhsMatkul'])->name('nilai');
+Route::resource('articles', ArticleController::class);
+Route::get('article/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
+Route::get('/mahasiswa/cetakpdf/{mahasiswa}', 
+    [MahasiswaController::class, 'cetak_pdf'])->name('cetakpdf');
